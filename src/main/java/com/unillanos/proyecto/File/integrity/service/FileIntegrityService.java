@@ -4,10 +4,12 @@
  */
 package com.unillanos.proyecto.File.integrity.service;
 
+import com.unillanos.proyecto.File.integrity.entity.FileIntegrityEntity;
 import java.security.MessageDigest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.unillanos.proyecto.File.integrity.repository.FileIntegrityRepository;
+import java.util.List;
 
 /**
  *
@@ -28,10 +30,10 @@ public class FileIntegrityService {
         String fileHash = calculateSHA256(fileBytes);
 
         // Busca el hash en la base de datos
-        boolean exists = fileRepository.findByHash(fileHash).isPresent();
+        List<FileIntegrityEntity> matchingFiles = fileRepository.findByHash(fileHash);
 
-        // Retorna el resultado
-        if (exists) {
+        // Verifica si existe al menos un archivo con el hash
+        if (!matchingFiles.isEmpty()) {
             return "El archivo es válido";
         } else {
             return "El archivo no es original";

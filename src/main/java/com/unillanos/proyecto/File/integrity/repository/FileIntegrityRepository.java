@@ -5,7 +5,7 @@
 package com.unillanos.proyecto.File.integrity.repository;
 
 import com.unillanos.proyecto.File.integrity.entity.FileIntegrityEntity;
-import java.util.Optional;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -13,5 +13,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author andre
  */
 public interface FileIntegrityRepository extends JpaRepository<FileIntegrityEntity, Long> {
-    Optional<FileIntegrityEntity> findByHash(String hash);
+    List<FileIntegrityEntity> findByHash(String hash);
 }
