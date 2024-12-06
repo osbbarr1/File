@@ -8,7 +8,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 public class FileApplication {
 
 	public static void main(String[] args) {
-                Dotenv dotenv = Dotenv.configure().directory("C:/unillanos/File").load();
+                Dotenv dotenv = Dotenv.load();
                 System.setProperty("MYSQL_URL", dotenv.get("MYSQL_URL"));
                 System.setProperty("MYSQL_USERNAME", dotenv.get("MYSQL_USERNAME"));
                 System.setProperty("MYSQL_PASSWORD", dotenv.get("MYSQL_PASSWORD"));

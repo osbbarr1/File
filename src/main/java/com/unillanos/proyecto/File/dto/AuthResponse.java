@@ -1,9 +1,11 @@
 package com.unillanos.proyecto.File.dto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Data
+@Builder
 @Getter
+@Setter
 @NoArgsConstructor
 public class AuthResponse
 {
