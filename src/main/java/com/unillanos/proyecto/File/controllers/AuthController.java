@@ -2,6 +2,7 @@ package com.unillanos.proyecto.File.controllers;
 
 import com.unillanos.proyecto.File.dto.AuthRequest;
 import com.unillanos.proyecto.File.dto.AuthResponse;
+import com.unillanos.proyecto.File.dto.ResponseGeneric;
 import com.unillanos.proyecto.File.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class AuthController
   }
 
   @PostMapping("/register")
-  public ResponseEntity<AuthResponse> generalToken(@RequestBody AuthRequest authRequest) throws IOException
+  public ResponseEntity<ResponseGeneric> generalToken(@RequestBody AuthRequest authRequest) throws IOException
   {
     var auth = SecurityContextHolder.getContext().getAuthentication();
     System.out.println("Usuario " + auth.getPrincipal());
