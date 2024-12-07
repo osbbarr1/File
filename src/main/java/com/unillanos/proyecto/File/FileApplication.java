@@ -8,11 +8,16 @@ import io.github.cdimascio.dotenv.Dotenv;
 public class FileApplication {
 
 	public static void main(String[] args) {
-                Dotenv dotenv = Dotenv.load();
-                System.setProperty("MYSQL_URL", dotenv.get("MYSQL_URL"));
-                System.setProperty("MYSQL_USERNAME", dotenv.get("MYSQL_USERNAME"));
-                System.setProperty("MYSQL_PASSWORD", dotenv.get("MYSQL_PASSWORD"));
-		SpringApplication.run(FileApplication.class, args);
+                try {
+                        Dotenv dotenv = Dotenv.load();
+                        System.setProperty("MYSQL_URL", dotenv.get("MYSQL_URL"));
+                        System.setProperty("MYSQL_USERNAME", dotenv.get("MYSQL_USERNAME"));
+                        System.setProperty("MYSQL_PASSWORD", dotenv.get("MYSQL_PASSWORD"));
+                        SpringApplication.run(FileApplication.class, args);
+                } catch (Exception e) {
+                        SpringApplication.run(FileApplication.class, args);
+                }
+		
 	}
 
 }
