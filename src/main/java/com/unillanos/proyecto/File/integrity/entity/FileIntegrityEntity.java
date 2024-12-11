@@ -20,9 +20,15 @@ public class FileIntegrityEntity {
     private Long id;
     
     @Column(nullable = false)
-    private String hash;
-
+    private String namefile;
     
+    @Column(nullable = false)
+    private String hash;
+    
+    @Column(columnDefinition = "JSON")
+    private String metadata;
+    
+
     public Long getId() {
         return id;
     }
@@ -31,11 +37,27 @@ public class FileIntegrityEntity {
         this.id = id;
     }
 
+    public String getNamefile() {
+        return namefile;
+    }
+
+    public void setNamefile(String namefile) {
+        this.namefile = namefile;
+    }
+
     public String getHash() {
         return hash;
     }
 
     public void setHash(String hash) {
         this.hash = hash;
+    }
+
+    public String getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(String metadata) {
+        this.metadata = metadata;
     }
 }
