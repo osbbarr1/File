@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.unillanos.proyecto.File.integrity.repository.FileIntegrityRepository;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -22,7 +23,7 @@ public class FileIntegrityService {
     @Autowired
     private FileIntegrityRepository fileRepository;
 
-    public String verifyIntegrity(String filedata) throws Exception {
+    public Map<String, Object> verifyIntegrity(String filedata) throws Exception {
         // Convierte el string binario a byte[]
         byte[] fileBytes = binaryStringToByteArray(filedata);
 
@@ -32,13 +33,35 @@ public class FileIntegrityService {
         // Busca el hash en la base de datos
         List<FileIntegrityEntity> matchingFiles = fileRepository.findByHash(fileHash);
 
-        // Verifica si existe al menos un archivo con el hash
-        if (!matchingFiles.isEmpty()) {
-            return "El archivo es válido";
+        // Respuesta según el caso
+        if (matchingFiles.isEmpty()) {
+            return Map.of(
+                "status", "invalid",
+                "message", "El archivo no es original."
+            );
+        } else if (matchingFiles.size() > 1) {
+            // Incluye el id, namefile y metadata en la respuesta
+            List fileList = matchingFiles.stream()
+                .map(file -> Map.of(
+                    "id", file.getId(),
+                    "namefile", file.getNamefile(),
+                    "metadata", file.getMetadata() 
+                ))
+                .toList();
+
+            return Map.of(
+                "status", "multiple",
+                "message", "Existen múltiples archivos con contenido idéntico.",
+                "files", fileList
+            );
         } else {
-            return "El archivo no es original";
+            return Map.of(
+                "status", "valid",
+                "message", "El archivo es válido."
+            );
         }
     }
+
 
     private String calculateSHA256(byte[] fileBytes) throws Exception {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -51,7 +74,7 @@ public class FileIntegrityService {
     }
 
     private byte[] binaryStringToByteArray(String binaryString) {
-        int byteLength = binaryString.length() / 8; // Cada byte tiene 8 bits
+        int byteLength = binaryString.length() / 8; 
         byte[] byteArray = new byte[byteLength];
         for (int i = 0; i < byteLength; i++) {
             int startIndex = i * 8;
