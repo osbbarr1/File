@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 /**
@@ -31,16 +30,19 @@ public class FileIntegrityController {
     
 
     @PostMapping("/verify")
-    public ResponseEntity<String> verifyFileIntegrity(@RequestBody Map<String, String> payload) {
+    public ResponseEntity<Map<String, Object>> verifyFileIntegrity(@RequestBody Map<String, String> payload) {
         try {
             // Extrae el string binario del JSON
             String filedata = payload.get("filedata");
 
             // Llama al servicio con el string binario
-            String result = fileIntegrityService.verifyIntegrity(filedata);
+            Map<String, Object> result = fileIntegrityService.verifyIntegrity(filedata);
+
             return ResponseEntity.ok(result);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("Error: " + e.getMessage());
+            return ResponseEntity.status(500).body(
+                Map.of("status", "error", "message", "Error interno: " + e.getMessage())
+            );
         }
     }
 }
