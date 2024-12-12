@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import io.github.cdimascio.dotenv.Dotenv;
 
+
 @SpringBootApplication
 public class FileApplication {
 
@@ -15,9 +16,17 @@ public class FileApplication {
                         System.setProperty("MYSQL_PASSWORD", dotenv.get("MYSQL_PASSWORD"));
                         SpringApplication.run(FileApplication.class, args);
                 } catch (Exception e) {
-                        SpringApplication.run(FileApplication.class, args);
+                       // SpringApplication.run(FileApplication.class, args);
                 }
-		
+
 	}
 
+  /*@Bean
+  CommandLineRunner init(SoapClientService soapClientService){
+    return args -> {
+      List<FileDTO> lis = soapClientService.getFileList();
+      System.out.println("El resultado obtenido ES ====>>>>> {}") ;
+    };
+  }
+*/
 }

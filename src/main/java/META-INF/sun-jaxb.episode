@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<bindings xmlns="http://java.sun.com/xml/ns/jaxb" if-exists="true" version="2.1">
+      
+    <!--
+
+Este archivo ha sido generado por Eclipse Implementation of JAXB v2.3.7 
+Visite https://eclipse-ee4j.github.io/jaxb-ri 
+Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+Generado el: 2024.12.12 a las 09:21:56 AM COT 
+
+  -->
+      
+    <bindings xmlns:tns="http://services.soap.example.org/" if-exists="true" scd="x-schema::tns">
+            
+        <schemaBindings map="false">
+                  
+            <package name="com.unillanos.proyecto.File.soap"/>
+                
+        </schemaBindings>
+            
+        <bindings if-exists="true" scd="~tns:fileListWrapper">
+                  
+            <class ref="com.unillanos.proyecto.File.soap.FileListWrapper"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:file">
+                  
+            <class ref="com.unillanos.proyecto.File.soap.File"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:getFileList">
+                  
+            <class ref="com.unillanos.proyecto.File.soap.GetFileList"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:getFileListResponse">
+                  
+            <class ref="com.unillanos.proyecto.File.soap.GetFileListResponse"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:getFileUUID">
+                  
+            <class ref="com.unillanos.proyecto.File.soap.GetFileUUID"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:getFileUUIDResponse">
+                  
+            <class ref="com.unillanos.proyecto.File.soap.GetFileUUIDResponse"/>
+                
+        </bindings>
+          
+    </bindings>
+    
+</bindings>
