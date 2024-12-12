@@ -19,7 +19,7 @@ public class FileApplication {
     } catch (Exception e) {
       // Solo se ejecuta si no esta el .env (Exepcion del metodo
       // Dotenv.configure().load();)
-      SpringApplication.run(FileApplication.class, args);
+      //SpringApplication.run(FileApplication.class, args);
     }
 
   }
