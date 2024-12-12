@@ -6,17 +6,29 @@
 Este archivo ha sido generado por Eclipse Implementation of JAXB v2.3.7 
 Visite https://eclipse-ee4j.github.io/jaxb-ri 
 Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-Generado el: 2024.12.08 a las 08:23:37 PM COT 
+Generado el: 2024.12.12 a las 09:21:56 AM COT 
 
   -->
       
-    <bindings xmlns:tns="http://services/" if-exists="true" scd="x-schema::tns">
+    <bindings xmlns:tns="http://services.soap.example.org/" if-exists="true" scd="x-schema::tns">
             
         <schemaBindings map="false">
                   
             <package name="com.unillanos.proyecto.File.soap"/>
                 
         </schemaBindings>
+            
+        <bindings if-exists="true" scd="~tns:fileListWrapper">
+                  
+            <class ref="com.unillanos.proyecto.File.soap.FileListWrapper"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:file">
+                  
+            <class ref="com.unillanos.proyecto.File.soap.File"/>
+                
+        </bindings>
             
         <bindings if-exists="true" scd="~tns:getFileList">
                   
@@ -39,18 +51,6 @@ Generado el: 2024.12.08 a las 08:23:37 PM COT
         <bindings if-exists="true" scd="~tns:getFileUUIDResponse">
                   
             <class ref="com.unillanos.proyecto.File.soap.GetFileUUIDResponse"/>
-                
-        </bindings>
-            
-        <bindings if-exists="true" scd="~tns:fileDTO">
-                  
-            <class ref="com.unillanos.proyecto.File.soap.FileDTO"/>
-                
-        </bindings>
-            
-        <bindings if-exists="true" scd="~tns:fileListWrapper">
-                  
-            <class ref="com.unillanos.proyecto.File.soap.FileListWrapper"/>
                 
         </bindings>
           

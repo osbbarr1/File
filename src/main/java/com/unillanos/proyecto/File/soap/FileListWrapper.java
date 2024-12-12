@@ -2,16 +2,20 @@
 // Este archivo ha sido generado por Eclipse Implementation of JAXB v2.3.7 
 // Visite https://eclipse-ee4j.github.io/jaxb-ri 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2024.12.08 a las 08:23:37 PM COT 
+// Generado el: 2024.12.12 a las 09:21:56 AM COT 
 //
 
 
 package com.unillanos.proyecto.File.soap;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
@@ -24,8 +28,8 @@ import jakarta.xml.bind.annotation.*;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="file" type="{http://services/}fileDTO" minOccurs="0"/&gt;
- *         &lt;element name="fileList" type="{http://services/}fileDTO" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="file" type="{http://services.soap.example.org/}file" minOccurs="0"/&gt;
+ *         &lt;element name="fileList" type="{http://services.soap.example.org/}file" maxOccurs="unbounded" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -42,19 +46,19 @@ import jakarta.xml.bind.annotation.*;
 })
 public class FileListWrapper {
 
-    protected FileDTO file;
+    protected File file;
     @XmlElement(nillable = true)
-    protected List<FileDTO> fileList;
+    protected List<File> fileList;
 
     /**
      * Obtiene el valor de la propiedad file.
      * 
      * @return
      *     possible object is
-     *     {@link FileDTO }
+     *     {@link File }
      *     
      */
-    public FileDTO getFile() {
+    public File getFile() {
         return file;
     }
 
@@ -63,10 +67,10 @@ public class FileListWrapper {
      * 
      * @param value
      *     allowed object is
-     *     {@link FileDTO }
+     *     {@link File }
      *     
      */
-    public void setFile(FileDTO value) {
+    public void setFile(File value) {
         this.file = value;
     }
 
@@ -88,13 +92,13 @@ public class FileListWrapper {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link FileDTO }
+     * {@link File }
      * 
      * 
      */
-    public List<FileDTO> getFileList() {
+    public List<File> getFileList() {
         if (fileList == null) {
-            fileList = new ArrayList<FileDTO>();
+            fileList = new ArrayList<File>();
         }
         return this.fileList;
     }

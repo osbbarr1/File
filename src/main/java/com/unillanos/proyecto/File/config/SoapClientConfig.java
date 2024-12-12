@@ -1,15 +1,18 @@
 package com.unillanos.proyecto.File.config;
 
 import com.unillanos.proyecto.File.service.soap.SoapClientService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-import org.springframework.ws.client.core.WebServiceTemplate;
-import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
 @Configuration
 public class SoapClientConfig
 {
+
+  @Value("${soap.service.uri}")
+  private String soapServiceUri;
+
   @Bean
   public Jaxb2Marshaller marshaller()
   {
@@ -22,7 +25,7 @@ public class SoapClientConfig
   public SoapClientService getSoapClient(Jaxb2Marshaller marshaller)
   {
     SoapClientService soapClientService = new SoapClientService();
-    soapClientService.setDefaultUri("http://localhost:8080/fileOperation/FileRead");
+    soapClientService.setDefaultUri(soapServiceUri);
     soapClientService.setMarshaller(marshaller);
     soapClientService.setUnmarshaller(marshaller);
     return soapClientService;
