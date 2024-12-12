@@ -2,22 +2,24 @@ package com.unillanos.proyecto.File.service.soap;
 
 import com.unillanos.proyecto.File.soap.*;
 import jakarta.xml.bind.JAXBElement;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
-import java.io.File;
 import java.util.List;
 
 
 public class SoapClientService extends WebServiceGatewaySupport
 {
 
-  public FileDTO getFileUUID(String uuid) {
-    // Crear el request
+  @Value("${soap.service.uri}")
+  private String soapServiceUri;
+
+  public File getFileUUID(String uuid) {
     GetFileUUID request = new GetFileUUID();
     request.setUuid(uuid);
 
-    SoapActionCallback soapActionCallback = new SoapActionCallback("http://services/");
+    SoapActionCallback soapActionCallback = new SoapActionCallback("");
 
     Object response = getWebServiceTemplate()
         .marshalSendAndReceive(request, soapActionCallback);
@@ -31,11 +33,11 @@ public class SoapClientService extends WebServiceGatewaySupport
   }
 
 
-  public List<FileDTO> getFileList() {
+  public List<File> getFileList() {
     GetFileList request = new GetFileList();
     Object response = getWebServiceTemplate()
-        .marshalSendAndReceive("http://localhost:8080/fileOperation/FileRead", request,
-            new SoapActionCallback("http://services/"));
+        .marshalSendAndReceive(soapServiceUri, request,
+            new SoapActionCallback(""));
     if (response instanceof JAXBElement<?> element) {
       GetFileListResponse fileInfo = (GetFileListResponse) element.getValue();
       if (fileInfo.getReturn() != null && fileInfo.getReturn().getFileList() != null) {

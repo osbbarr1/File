@@ -130,7 +130,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-          <!--  <plugin>
+            <!--<plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
                 <version>0.15.3</version>
@@ -147,7 +147,7 @@
                     <generatePackage>com.unillanos.proyecto.File.soap</generatePackage>
                     <schemas>
                         <schema>
-                            <url>http://localhost:8080/fileOperation/FileRead?WSDL</url>
+                            <url>http://181.79.9.72:6456/ws/Files?wsdl</url>
                         </schema>
                     </schemas>
                 </configuration>
