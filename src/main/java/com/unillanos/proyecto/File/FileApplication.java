@@ -8,12 +8,19 @@ import io.github.cdimascio.dotenv.Dotenv;
 public class FileApplication {
 
   public static void main(String[] args) {
-
-    Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
-    System.setProperty("MYSQL_URL", dotenv.get("MYSQL_URL"));
-    System.setProperty("MYSQL_USERNAME", dotenv.get("MYSQL_USERNAME"));
-    System.setProperty("MYSQL_PASSWORD", dotenv.get("MYSQL_PASSWORD"));
-    SpringApplication.run(FileApplication.class, args);
+    try {
+      Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
+      System.setProperty("MYSQL_URL", dotenv.get("MYSQL_URL"));
+      System.setProperty("MYSQL_USERNAME", dotenv.get("MYSQL_USERNAME"));
+      System.setProperty("MYSQL_PASSWORD", dotenv.get("MYSQL_PASSWORD"));
+      System.setProperty("FILES_URL_SOAP", dotenv.get("FILES_URL_SOAP"));
+      System.setProperty("AUTH_URL_SOAP", dotenv.get("AUTH_URL_SOAP"));
+      SpringApplication.run(FileApplication.class, args);
+    } catch (Exception e) {
+      // Solo se ejecuta si no esta el .env (Exepcion del metodo
+      // Dotenv.configure().load();)
+      SpringApplication.run(FileApplication.class, args);
+    }
 
   }
 
