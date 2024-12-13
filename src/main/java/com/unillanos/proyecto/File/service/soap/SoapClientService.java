@@ -9,8 +9,7 @@ import org.springframework.ws.soap.client.core.SoapActionCallback;
 import java.util.List;
 
 
-public class SoapClientService extends WebServiceGatewaySupport
-{
+public class SoapClientService extends WebServiceGatewaySupport {
 
   @Value("${soap.service.uri}")
   private String soapServiceUri;
@@ -32,9 +31,9 @@ public class SoapClientService extends WebServiceGatewaySupport
     throw new IllegalStateException("Unexpected response type: " + response.getClass());
   }
 
-
   public List<File> getFileList() {
     GetFileList request = new GetFileList();
+
     Object response = getWebServiceTemplate()
         .marshalSendAndReceive(soapServiceUri, request,
             new SoapActionCallback(""));
