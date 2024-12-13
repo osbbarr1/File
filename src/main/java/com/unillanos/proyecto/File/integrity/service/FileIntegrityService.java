@@ -40,12 +40,12 @@ public class FileIntegrityService {
                 "message", "El archivo no es original."
             );
         } else if (matchingFiles.size() > 1) {
-            // Incluye el id, namefile y metadata en la respuesta
+            
             List fileList = matchingFiles.stream()
                 .map(file -> Map.of(
                     "id", file.getId(),
                     "namefile", file.getNamefile(),
-                    "metadata", file.getMetadata() 
+                    "metadata", file.getMetadata() != null ? file.getMetadata() : "Metadata no disponible"
                 ))
                 .toList();
 
@@ -61,7 +61,6 @@ public class FileIntegrityService {
             );
         }
     }
-
 
     private String calculateSHA256(byte[] fileBytes) throws Exception {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
